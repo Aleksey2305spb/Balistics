@@ -129,12 +129,12 @@ class ballistics
         double sight = 0;
         const double dt = 0.001;
         const double accuracy = 10000;
-        double* Vx = new double[accuracy];
-        double* Vy = new double[accuracy];
+        double Vx;
+        double Vy;
         double dVx;
         double dVy;
-        double* X = new double[accuracy];
-        double* Y = new double[accuracy];
+        double X;
+        double Y;
         double dX;
         double dY;
         double last_shot;
@@ -144,84 +144,76 @@ class ballistics
         if (distance > MAX_distanse) return -1;
         do {
             last_shot = current_shot;
-            Vx[0] = arrow_->get_arrow_speed() * std::cos(sight);
-            Vy[0] = arrow_->get_arrow_speed() * std::sin(sight);
-            X[0] = 0;
-            Y[0] = 0;
+            Vx = arrow_->get_arrow_speed() * std::cos(sight);
+            Vy = arrow_->get_arrow_speed() * std::sin(sight);
+            X = 0;
+            Y = 0;
             for (int i = 1; i < accuracy; i++)
             {
-                V_x = Vx[i - 1];
-                V_y = Vy[i - 1];
-                dx_dy(dVx, dVy, V_x, V_y, dt);
-                Vx[i] = Vx[i - 1] + dVx;
-                Vy[i] = Vy[i - 1] + dVy;
-                dX = (Vx[i] + Vx[i - 1]) / 2 * dt;
-                dY = (Vy[i] + Vy[i - 1]) / 2 * dt;
-                X[i] = X[i - 1] + dX;
-                Y[i] = Y[i - 1] + dY;
-                if (X[i] > distance)
+                V_x = Vx;
+                V_y = Vy;
+                dx_dy(dVx, dVy, Vx, Vy, dt);
+                Vx = Vx + dVx;
+                Vy = Vy + dVy;
+                dX = (Vx + V_x) / 2 * dt;
+                dY = (Vy + V_y) / 2 * dt;
+                X = X + dX;
+                Y = Y + dY;
+                if (X > distance)
                 {
                     
-                    current_shot = Y[i];
+                    current_shot = Y;
                     break;
                 }
             }
             sight += 0.0001;
             if (sight > pi / 2) return -1;
         } while (current_shot * last_shot >= 0);
-        delete[] Vx;
-        delete[] Vy;
-        delete[] X;
-        delete[] Y;
         return sight;
     }
-    double get_MAX_distanse ()
+    double get_MAX_distanse()
     {
         double distance = 0;
         double sight = 0;
         const double dt = 0.001;
         const double accuracy = 100000;
-        double* Vx = new double[accuracy];
-        double* Vy = new double[accuracy];
+        double Vx;
+        double Vy;
         double dVx;
         double dVy;
-        double* X = new double[accuracy];
-        double* Y = new double[accuracy];
+        double X;
+        double Y;
         double dX;
         double dY;
         double V_x;
         double V_y;
         do {
-            Vx[0] = arrow_->get_arrow_speed() * std::cos(sight);
-            Vy[0] = arrow_->get_arrow_speed() * std::sin(sight);
-            X[0] = 0;
-            Y[0] = 0;
+            Vx = arrow_->get_arrow_speed() * std::cos(sight);
+            Vy = arrow_->get_arrow_speed() * std::sin(sight);
+            X = 0;
+            Y = 0;
             for (int i = 1; i < accuracy; i++)
             {
-                V_x = Vx[i - 1];
-                V_y = Vy[i - 1];
-                dx_dy(dVx, dVy, V_x, V_y, dt);
-                Vx[i] = Vx[i - 1] + dVx;
-                Vy[i] = Vy[i - 1] + dVy;
-                dX = (Vx[i] + Vx[i - 1]) / 2 * dt;
-                dY = (Vy[i] + Vy[i - 1]) / 2 * dt;
-                X[i] = X[i - 1] + dX;
-                Y[i] = Y[i - 1] + dY;
-                if (Y[i] < 0)
+                V_x = Vx;
+                V_y = Vy;
+                dx_dy(dVx, dVy, Vx, Vy, dt);
+                Vx = Vx + dVx;
+                Vy = Vy + dVy;
+                dX = (Vx + V_x) / 2 * dt;
+                dY = (Vy + V_y) / 2 * dt;
+                X = X + dX;
+                Y = Y + dY;
+                if (Y < 0)
                 {
-                    if (distance < X[i - 1])
+                    if (distance < (X - dX))
                     {
-                        distance = X[i-1];
+                        distance = (X - dX);
                     }
                     break;
                 }
             }
             sight += 0.001;
-        } while (sight < pi/2);
-        delete[] Vx;
-        delete[] Vy;
-        delete[] X;
-        delete[] Y;
+        } while (sight < pi / 2);
         return distance;
     }
     void set_normal_sights()
