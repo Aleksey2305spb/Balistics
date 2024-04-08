@@ -50,7 +50,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QSlider" name="verticalSlider">
+             <widget class="QSlider" name="sightSlider">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -59,7 +59,7 @@
            </layout>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_9">
+           <widget class="QLineEdit" name="lineEdit_sight">
             <property name="enabled">
              <bool>true</bool>
             </property>
@@ -111,22 +111,12 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="4">
-              <widget class="QLineEdit" name="lineEdit_19">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
              <item row="4" column="0">
               <widget class="QLabel" name="label_27">
                <property name="text">
                 <string>Диаметр древка</string>
                </property>
               </widget>
-             </item>
-             <item row="5" column="4">
-              <widget class="QLineEdit" name="lineEdit_17"/>
              </item>
              <item row="2" column="0">
               <widget class="QLabel" name="label_32">
@@ -157,13 +147,7 @@
               </widget>
              </item>
              <item row="0" column="4">
-              <widget class="QLineEdit" name="lineEdit_18"/>
-             </item>
-             <item row="4" column="4">
-              <widget class="QLineEdit" name="lineEdit_21"/>
-             </item>
-             <item row="3" column="4">
-              <widget class="QLineEdit" name="lineEdit_20"/>
+              <widget class="QLineEdit" name="lineEdit_speed_ms"/>
              </item>
              <item row="0" column="5">
               <widget class="QLabel" name="label_28">
@@ -172,8 +156,20 @@
                </property>
               </widget>
              </item>
+             <item row="1" column="4">
+              <widget class="QLineEdit" name="lineEdit_speed_fps"/>
+             </item>
              <item row="2" column="4">
-              <widget class="QLineEdit" name="lineEdit_16"/>
+              <widget class="QLineEdit" name="lineEdit_weight_g"/>
+             </item>
+             <item row="3" column="4">
+              <widget class="QLineEdit" name="lineEdit_weight_gn"/>
+             </item>
+             <item row="4" column="4">
+              <widget class="QLineEdit" name="lineEdit_diameter"/>
+             </item>
+             <item row="5" column="4">
+              <widget class="QLineEdit" name="lineEdit_feather"/>
              </item>
             </layout>
            </widget>
@@ -197,34 +193,24 @@
       </item>
       <item>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="2" column="3">
-         <spacer name="horizontalSpacer_2">
+        <item row="0" column="0" colspan="6">
+         <widget class="QSlider" name="distanceSlider">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
-          <property name="sizeHint" stdset="0">
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QLineEdit" name="lineEdit_distance">
+          <property name="maximumSize">
            <size>
-            <width>450</width>
-            <height>18</height>
+            <width>60</width>
+            <height>16777215</height>
            </size>
           </property>
-         </spacer>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>200</string>
-          </property>
          </widget>
         </item>
-        <item row="0" column="0" colspan="5">
-         <widget class="QSlider" name="horizontalSlider">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="4">
+        <item row="2" column="5">
          <widget class="QLabel" name="label_2">
           <property name="text">
            <string>5</string>
@@ -244,13 +230,30 @@
           </property>
          </spacer>
         </item>
-        <item row="2" column="2">
-         <widget class="QLineEdit" name="lineEdit_7">
-          <property name="maximumSize">
+        <item row="2" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>100</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="4">
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
            <size>
-            <width>60</width>
-            <height>16777215</height>
+            <width>450</width>
+            <height>18</height>
            </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="3">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>м</string>
           </property>
          </widget>
         </item>
@@ -273,10 +276,8 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <tabstops>
-  <tabstop>horizontalSlider</tabstop>
-  <tabstop>lineEdit_7</tabstop>
-  <tabstop>lineEdit_8</tabstop>
-  <tabstop>horizontalSlider_2</tabstop>
+  <tabstop>distanceSlider</tabstop>
+  <tabstop>lineEdit_distance</tabstop>
  </tabstops>
  <resources/>
  <connections/>

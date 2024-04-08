@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <Arrow_ballistics.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,8 +15,10 @@ class MainWindow : public QMainWindow
 public:
    MainWindow(QWidget *parent = nullptr);
    ~MainWindow();
-
+   ballistics *shot;
 private:
    Ui::MainWindow *ui;
+public slots:
+   void distance_changed (int value);
 };
 #endif // MAINWINDOW_H
